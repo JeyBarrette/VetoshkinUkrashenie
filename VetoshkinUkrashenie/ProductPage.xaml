@@ -14,18 +14,18 @@
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="120"></ColumnDefinition>
-                            <ColumnDefinition Width="480"></ColumnDefinition>
                             <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition Width="480"></ColumnDefinition>
+                            <ColumnDefinition Width="75"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
                         </Grid.RowDefinitions>
 
-                        <Image Width="100" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Center">
+                        <Image Width="150" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Center" Grid.RowSpan="3">
                             <Image.Source>
                                 <Binding Path="ProductPhoto">
                                     <Binding.TargetNullValue>
@@ -37,15 +37,19 @@
                             </Image.Source>
                         </Image>
 
-                        <StackPanel Grid.Column="1" Orientation="Vertical"></StackPanel>
-                        <TextBlock Text="{Binding ProductName}" FontSize="20" FontWeight="Bold" HorizontalAlignment="left" ></TextBlock>
-                        <TextBlock Text="{Binding ProductDescription}" FontSize="16"  HorizontalAlignment="left" ></TextBlock>
-                        <TextBlock Text="{Binding ProductManufacturer}" FontSize="16"  HorizontalAlignment="left" ></TextBlock>
-                        <TextBlock Text="{Binding ProductCost}" FontSize="16"  HorizontalAlignment="left" ></TextBlock>
+                        <StackPanel Grid.Column="1" Orientation="Vertical">
+                            <TextBlock Text="{Binding ProductName}" Margin="5,0" FontSize="20" FontWeight="Bold" HorizontalAlignment="left" ></TextBlock>
+                            <TextBlock Text="{Binding ProductDescription}" Margin="5,0" FontSize="16"  HorizontalAlignment="left"  ></TextBlock>
+                            <TextBlock Text="{Binding ProductManufacturer}" Margin="5,0" FontSize="16"  HorizontalAlignment="left" ></TextBlock>
+                            <TextBlock Text="{Binding ProductCost}" Margin="5,0" FontSize="16"  HorizontalAlignment="left" ></TextBlock>
+                        </StackPanel>
 
                         <StackPanel Grid.Column="2" Orientation="Vertical">
-                            <TextBlock Text="Скидка" FontSize="16" HorizontalAlignment="left" ></TextBlock>
-                            <TextBlock Text="{Binding ProductCurrentDiscount}" FontSize="16" HorizontalAlignment="left" ></TextBlock>
+                            <TextBlock Text="Скидка" FontSize="16" HorizontalAlignment="Center" ></TextBlock>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="{Binding ProductCurrentDiscount}" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" ></TextBlock>
+                                <TextBlock Text="%" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" ></TextBlock>
+                            </StackPanel>
                         </StackPanel>
 
                     </Grid>
