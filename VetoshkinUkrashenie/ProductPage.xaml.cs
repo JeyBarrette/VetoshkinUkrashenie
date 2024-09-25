@@ -25,6 +25,42 @@ namespace VetoshkinUkrashenie
             InitializeComponent();
             var currentProduct = VetoshkinUkrashenieEntities.GetContext().Product.ToList();
             ProductListView.ItemsSource = currentProduct;
+            SortProduct.SelectedIndex = 0;
+            FilterProduct.SelectedIndex = 0;
+        }
+
+        private void UpdateProduct()
+        {
+            var currentProduct = VetoshkinUkrashenieEntities.GetContext().Product.ToList();
+
+            currentProduct = currentProduct.Where(p => (p.ProductName.ToLower().Contains(SearchProduct.Text.ToLower());
+            if (SortProduct.SelectedIndex == 0)
+            {
+
+            }
+            if (SortProduct.SelectedIndex == 1)
+            {
+                currentProduct = currentProduct.OrderBy(p => p.ProductName).ToList();
+            }
+            if (SortProduct.SelectedIndex == 2)
+            {
+                currentProduct = currentProduct.OrderByDescending(p => p.ProductName).ToList();
+            }
+        }
+
+        private void SearchProduct_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void SortProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void FilterProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -9,7 +9,36 @@
       Title="ProductPage">
 
     <Grid>
-        <ListView Name="ProductListView">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="5,0">
+                <TextBlock Text="Выбрано товаров: " FontSize="20" Margin="5,0"></TextBlock>
+                <TextBlock Text="10" FontSize="20"></TextBlock>
+                <TextBlock Text="из" FontSize="20" Margin="5,0"></TextBlock>
+                <TextBlock Text="10" FontSize="20"></TextBlock>
+            </StackPanel>
+            <StackPanel Margin="5,0" Orientation="Horizontal">
+                <TextBox Name="SearchProduct" TextChanged="SearchProduct_TextChanged" Width="300" FontSize="15" Margin="5,0"></TextBox>
+                <ComboBox Name="SortProduct" SelectionChanged="SortProduct_SelectionChanged" Width="225" FontSize="15">
+                    <TextBlock>Все товары</TextBlock>
+                    <TextBlock>По возрастанию</TextBlock>
+                    <TextBlock>По убыванию</TextBlock>
+                </ComboBox>
+                <ComboBox Name="FilterProduct" SelectionChanged="FilterProduct_SelectionChanged" Width="225" FontSize="15" Margin="5,0">
+                    <TextBlock>Все диапазоны</TextBlock>
+                    <TextBlock>0-9,99%</TextBlock>
+                    <TextBlock>10-14,99%</TextBlock>
+                    <TextBlock>15% и более</TextBlock>
+                </ComboBox>
+            </StackPanel>
+        </WrapPanel>
+        
+        <ListView Name="ProductListView" Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -44,11 +73,11 @@
                             <TextBlock Text="{Binding ProductCost}" Margin="5,0" FontSize="16"  HorizontalAlignment="left" ></TextBlock>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="2" Orientation="Vertical">
+                        <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center">
                             <TextBlock Text="Скидка" FontSize="16" HorizontalAlignment="Center" ></TextBlock>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <TextBlock Text="{Binding ProductCurrentDiscount}" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" ></TextBlock>
-                                <TextBlock Text="%" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" ></TextBlock>
+                                <TextBlock Text="%" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center"></TextBlock>
                             </StackPanel>
                         </StackPanel>
 
