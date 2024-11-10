@@ -15,31 +15,31 @@ namespace VetoshkinUkrashenie
     
     public partial class VetoshkinUkrashenieEntities : DbContext
     {
-        public VetoshkinUkrashenieEntities()
-            : base("name=VetoshkinUkrashenieEntities")
-        {
-        }
-
-        private static VetoshkinUkrashenieEntities _context;
+        public static VetoshkinUkrashenieEntities _context;
 
         public static VetoshkinUkrashenieEntities GetContext()
         {
             if (_context == null)
                 _context = new VetoshkinUkrashenieEntities();
-
             return _context;
         }
 
+        public VetoshkinUkrashenieEntities()
+            : base("name=VetoshkinUkrashenieEntities")
+        {
+        }
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<OrderProduct> OrderProduct { get; set; }
         public virtual DbSet<PickupPoint> PickupPoint { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
     }
 }

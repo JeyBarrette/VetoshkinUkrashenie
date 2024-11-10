@@ -11,7 +11,8 @@ namespace VetoshkinUkrashenie
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Windows.Media;
+
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -34,6 +35,22 @@ namespace VetoshkinUkrashenie
         public string ProductPhoto { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+        public SolidColorBrush FonStyle
+        {
+            get
+            {
+                if (ProductCurrentDiscount > 15)
+                {
+                    return (SolidColorBrush)new BrushConverter().ConvertFromString("#7fff00");
+                }
+                else
+                {
+                    return (SolidColorBrush)new BrushConverter().ConvertFromString("White");
+                }
+            }
+        }
+
         public virtual ICollection<OrderProduct> OrderProduct { get; set; }
     }
 }

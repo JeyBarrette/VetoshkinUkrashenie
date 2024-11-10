@@ -18,9 +18,9 @@
         <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Margin="5,0">
                 <TextBlock Text="Выбрано товаров: " FontSize="20" Margin="5,0"></TextBlock>
-                <TextBlock Text="10" FontSize="20"></TextBlock>
+                <TextBlock Name="CurrentQuantity" Text="10" FontSize="20"></TextBlock>
                 <TextBlock Text="из" FontSize="20" Margin="5,0"></TextBlock>
-                <TextBlock Text="10" FontSize="20"></TextBlock>
+                <TextBlock Name="QuantityAmount" Text="10" FontSize="20"></TextBlock>
             </StackPanel>
             <StackPanel Margin="5,0" Orientation="Horizontal">
                 <TextBox Name="SearchProduct" TextChanged="SearchProduct_TextChanged" Width="300" FontSize="15" Margin="5,0"></TextBox>
@@ -41,7 +41,7 @@
         <ListView Name="ProductListView" Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Background="{Binding FonStyle}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="150"></ColumnDefinition>
                             <ColumnDefinition Width="480"></ColumnDefinition>

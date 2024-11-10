@@ -83,6 +83,9 @@
     <Compile Include="Role.cs">
       <DependentUpon>VetoshkinModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>VetoshkinModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>VetoshkinModel.tt</DependentUpon>
     </Compile>

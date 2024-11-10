@@ -27,40 +27,62 @@ namespace VetoshkinUkrashenie
             ProductListView.ItemsSource = currentProduct;
             SortProduct.SelectedIndex = 0;
             FilterProduct.SelectedIndex = 0;
+            UpdateProduct();
         }
 
         private void UpdateProduct()
         {
             var currentProduct = VetoshkinUkrashenieEntities.GetContext().Product.ToList();
 
-            currentProduct = currentProduct.Where(p => (p.ProductName.ToLower().Contains(SearchProduct.Text.ToLower());
-            if (SortProduct.SelectedIndex == 0)
+            if (FilterProduct.SelectedIndex == 0)
             {
-
+                currentProduct = currentProduct.Where(p => p.ProductCurrentDiscount >= 0 && p.ProductCurrentDiscount < 100).ToList();
             }
+
+            if (FilterProduct.SelectedIndex == 1)
+            {
+                currentProduct = currentProduct.Where(p => p.ProductCurrentDiscount >= 0 && p.ProductCurrentDiscount < 10).ToList();
+            }
+
+            if (FilterProduct.SelectedIndex == 2)
+            {
+                currentProduct = currentProduct.Where(p => p.ProductCurrentDiscount >= 10 && p.ProductCurrentDiscount < 15).ToList();
+            }
+
+            if (FilterProduct.SelectedIndex == 3)
+            {
+                currentProduct = currentProduct.Where(p => p.ProductCurrentDiscount >= 15 && p.ProductCurrentDiscount <= 100).ToList();
+            }
+
+            if (SortProduct.SelectedIndex == 0) { }
             if (SortProduct.SelectedIndex == 1)
             {
-                currentProduct = currentProduct.OrderBy(p => p.ProductName).ToList();
+                currentProduct = currentProduct.OrderBy(p => p.ProductCost).ToList();
             }
             if (SortProduct.SelectedIndex == 2)
             {
-                currentProduct = currentProduct.OrderByDescending(p => p.ProductName).ToList();
+                currentProduct = currentProduct.OrderByDescending(p => p.ProductCost).ToList();
             }
+            currentProduct = currentProduct.Where(p => p.ProductName.ToLower().Contains(SearchProduct.Text.ToLower())).ToList();
+            ProductListView.ItemsSource = currentProduct;
+
+            QuantityAmount.Text = VetoshkinUkrashenieEntities.GetContext().Product.ToList().Count().ToString();
+            CurrentQuantity.Text = currentProduct.Count.ToString();
         }
 
         private void SearchProduct_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            UpdateProduct();
         }
 
         private void SortProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            UpdateProduct();
         }
 
         private void FilterProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            UpdateProduct();    
         }
     }
 }
